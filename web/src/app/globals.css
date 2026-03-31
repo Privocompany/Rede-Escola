@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand-purple: #6835d6;
+    --color-brand-blue: #00b2f7;
+    --color-brand-yellow: #ffca28;
+    --color-brand-orange: #ff4500;
+    --color-ui-wash: #f0f2f5;
+    --color-ui-surface: #ffffff;
+    --color-ui-divider: #e4e6eb;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #050505;
+    font-family: "Nunito", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar - thin and subtle like Instagram */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d3d6da;
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a8adb3;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Story ring gradient like Instagram */
+  .story-ring {
+    background: linear-gradient(
+      45deg,
+      #ffca28,
+      #00b2f7,
+      #6835d6
+    );
+    padding: 2.5px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Smooth transition default */
+  .smooth {
+    transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+  }
+
+  /* Glass card effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #6835d6, #00b2f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #f0f2f5 25%,
+      #e4e6eb 50%,
+      #f0f2f5 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}

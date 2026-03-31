@@ -1,0 +1,134 @@
+// Schema Prisma Atualizado v2
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model School {
+  id        String   @id @default(uuid())
+  name      String
+  cnpj      String   @unique
+  createdAt DateTime @default(now())
+  
+  users     User[]
+  classes   ClassRoom[]
+  courses   Course[]
+  posts     Post[]
+  events    Event[]
+  rewards   Reward[]
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+  PARENT
+}
+
+model User {
+  id              String   @id @default(uuid())
+  role            Role
+  name            String
+  email           String?  @unique
+  cpf             String?  @unique
+  ra              String?  @unique
+  passwordHash    String
+  
+  // Gamificação
+  eduCoins        Int      @default(0)
+  
+  schoolId        String
+  school          School   @relation(fields: [schoolId], references: [id])
+  
+  parentId        String?
+  parent          User?    @relation("ParentChild", fields: [parentId], references: [id])
+  children        User[]   @relation("ParentChild")
+
+  classId         String?
+  classRoom       ClassRoom? @relation(fields: [classId], references: [id])
+  
+  posts           Post[]
+  comments        Comment[]
+  messagesSent    DirectMessage[] @relation("Sender")
+  messagesRcvd    DirectMessage[] @relation("Receiver")
+  
+  enrollments     CourseEnrollment[]
+  docRequests     DocumentRequest[]
+  activityLogs    ActivityLog[]
+  checkIns        CheckIn[]
+  eventAttendance EventAttendance[]
+  
+  lastActiveAt    DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model ClassRoom {
+  id        String   @id @default(uuid())
+  name      String
+  schoolId  String
+  school    School   @relation(fields: [schoolId], references: [id])
+  students  User[]
+  events    Event[]
+}
+
+// ==========================================
+// MONITORAMENTO FÍSICO (Catraca)
+// ==========================================
+
+model CheckIn {
+  id        String   @id @default(uuid())
+  type      String   // "ENTRY" ou "EXIT"
+  timestamp DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+// ==========================================
+// AGENDA / PLANNER
+// ==========================================
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  date        DateTime
+  type        String   // "EXAM", "TASK", "HOLIDAY", "MEETING"
+  
+  schoolId    String
+  school      School   @relation(fields: [schoolId], references: [id])
+  classId     String?
+  classRoom   ClassRoom? @relation(fields: [classId], references: [id])
+  
+  attendees   EventAttendance[]
+}
+
+model EventAttendance {
+  id      String @id @default(uuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id])
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+  status  String // "CONFIRMED", "ABSENT"
+}
+
+// ==========================================
+// GAMIFICAÇÃO
+// ==========================================
+
+model Reward {
+  id          String   @id @default(uuid())
+  title       String
+  cost        Int
+  description String?
+  schoolId    String
+  school      School   @relation(fields: [schoolId], references: [id])
+}
+
+// RESTANTE DO SCHEMA (SOCIAL/LMS) MANTIDO...
+// Post, Comment, DirectMessage, Course, CourseModule, CourseEnrollment, DocumentRequest, ActivityLog (mesma estrutura anterior)

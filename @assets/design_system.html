@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System & Layout - Rede Escola</title>
+    <!-- Fonte moderna, arredondada e amigável, inspirada no ClassDojo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#6835D6',
+                            purple_hover: '#5A2EBA',
+                            blue: '#00B2F7',
+                            blue_hover: '#009DDE',
+                            yellow: '#FFCA28',
+                            orange: '#FF4500', // Cores base do Reddit
+                        },
+                        ui: {
+                            wash: '#F0F2F5', // Fundo FB/IG
+                            surface: '#FFFFFF', // Cor dos cartões
+                            divider: '#E4E6EB', // Linhas sutis
+                            hover: 'rgba(0, 0, 0, 0.05)',
+                        },
+                        text: {
+                            primary: '#050505',
+                            secondary: '#65676B',
+                            placeholder: '#8A8D91',
+                        }
+                    },
+                    borderRadius: {
+                        'xl': '16px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'card': '0 1px 2px rgba(0, 0, 0, 0.1)',
+                        'float': '0 8px 30px rgba(104, 53, 214, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: theme('colors.ui.wash');
+            color: theme('colors.text.primary');
+        }
+        
+        .smooth-transition {
+            transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+        }
+        
+        .story-ring {
+            background: linear-gradient(45deg, theme('colors.brand.yellow'), theme('colors.brand.blue'), theme('colors.brand.purple'));
+            padding: 3px;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        .story-ring .story-inner {
+            border: 3px solid theme('colors.ui.surface');
+            border-radius: 9999px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <header class="mb-12">
+        <h1 class="text-4xl font-extrabold text-brand-purple mb-2">Rede Escola - Design System</h1>
+        <p class="text-text-secondary text-lg">Síntese de padrões do Instagram e Facebook combinados com a estética amigável e premium (ClassDojo) da Rede Escola.</p>
+    </header>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 mb-16">
+        
+        <!-- CORES -->
+        <section class="bg-ui-surface p-8 rounded-2xl shadow-card">
+            <h2 class="text-2xl font-bold mb-6 border-b border-ui-divider pb-4">Cores da Marca</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-purple rounded-xl mx-auto shadow-float mb-2"></div>
+                    <p class="font-bold text-sm">Purple</p>
+                    <p class="text-xs text-text-secondary">#6835D6</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-blue rounded-xl mx-auto shadow-soft mb-2"></div>
+                    <p class="font-bold text-sm">Blue</p>
+                    <p class="text-xs text-text-secondary">#00B2F7</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-yellow rounded-xl mx-auto shadow-soft mb-2"></div>
+                    <p class="font-bold text-sm">Yellow</p>
+                    <p class="text-xs text-text-secondary">#FFCA28</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-orange rounded-xl mx-auto shadow-soft mb-2"></div>
+                    <p class="font-bold text-sm">Orange (Reddit)</p>
+                    <p class="text-xs text-text-secondary">#FF4500</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-ui-wash border border-ui-divider rounded-xl mx-auto mb-2"></div>
+                    <p class="font-bold text-sm">Wash</p>
+                    <p class="text-xs text-text-secondary">#F0F2F5</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPONENTES BASE -->
+        <section class="bg-ui-surface p-8 rounded-2xl shadow-card">
+            <h2 class="text-2xl font-bold mb-6 border-b border-ui-divider pb-4">Componentes UI</h2>
+            
+            <div class="flex flex-wrap gap-4 items-center mb-6">
+                <button class="bg-brand-purple hover:bg-brand-purple_hover text-white font-bold py-3 px-6 rounded-2xl shadow-float smooth-transition transform hover:-translate-y-0.5">
+                    Botão Primário
+                </button>
+                <button class="bg-brand-blue bg-opacity-10 text-brand-blue hover:bg-opacity-20 font-bold py-3 px-6 rounded-2xl smooth-transition">
+                    Botão Secundário
+                </button>
+                <button class="bg-ui-wash hover:bg-ui-divider text-text-primary font-semibold py-3 px-6 rounded-2xl smooth-transition">
+                    Botão Neutro
+                </button>
+            </div>
+
+            <div class="mb-4 relative">
+                <i class="ri-search-line absolute left-4 top-1/2 transform -translate-y-1/2 text-text-placeholder"></i>
+                <input type="text" placeholder="Pesquisar..." class="w-full bg-ui-wash border-none rounded-2xl py-3 pl-12 pr-4 text-text-primary placeholder-text-placeholder focus:ring-2 focus:ring-brand-blue outline-none smooth-transition">
+            </div>
+
+            <!-- Tags & Flairs estilo Reddit -->
+            <div class="mt-8 border-t border-ui-divider pt-6">
+                <h3 class="font-bold text-sm text-text-secondary mb-3 uppercase tracking-wider">Flairs / Tags (Reddit Style)</h3>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <span class="bg-brand-orange/10 text-brand-orange border border-brand-orange/20 text-xs px-2.5 py-0.5 rounded font-bold uppercase tracking-wider">Aviso Escolar</span>
+                    <span class="bg-brand-purple/10 text-brand-purple border border-brand-purple/20 text-xs px-2.5 py-0.5 rounded font-bold uppercase tracking-wider">Tarefa</span>
+                    <span class="bg-gray-200 text-gray-700 border border-gray-300 text-xs px-2.5 py-0.5 rounded font-bold uppercase tracking-wider">Geral</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PREVIEW DO LAYOUT PÓS-LOGIN (ESTILO INSTAGRAM) -->
+    <section class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-extrabold mb-8 text-center text-text-primary">Preview do Layout Pós-Login (Referência Instagram)</h2>
+        
+        <!-- Wrapper do Layout -->
+        <div class="flex gap-8 justify-center bg-ui-wash min-h-[800px] border border-ui-divider rounded-3xl overflow-hidden relative shadow-soft">
+            
+            <!-- SIDEBAR ESQUERDA (Menu de Navegação) -->
+            <aside class="w-[280px] bg-ui-surface hidden md:flex flex-col border-r border-ui-divider shadow-sm z-10">
+                <div class="p-6 pb-2">
+                    <!-- Logo Simulada -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-purple rounded-xl flex items-center justify-center text-white font-black text-xl shadow-float">
+                            RE
+                        </div>
+                        <span class="font-extrabold text-xl tracking-tight text-brand-purple">Rede Escola</span>
+                    </div>
+                </div>
+
+                <nav class="flex-1 px-4 py-6 flex flex-col gap-2">
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-bold text-text-primary group">
+                        <i class="ri-home-5-fill text-2xl group-hover:scale-110 smooth-transition"></i> Página Inicial
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-semibold text-text-secondary hover:text-text-primary group">
+                        <i class="ri-search-line text-2xl group-hover:scale-110 smooth-transition"></i> Pesquisar
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-semibold text-text-secondary hover:text-text-primary group">
+                        <div class="relative">
+                            <i class="ri-calendar-event-line text-2xl group-hover:scale-110 smooth-transition"></i>
+                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-purple rounded-full"></span>
+                        </div>
+                        Agenda
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-semibold text-text-secondary hover:text-text-primary group">
+                        <i class="ri-medal-2-line text-2xl group-hover:scale-110 smooth-transition"></i> EduCoins
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-semibold text-text-secondary hover:text-text-primary group">
+                        <i class="ri-walk-line text-2xl group-hover:scale-110 smooth-transition"></i> Catraca Virtual
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-ui-wash smooth-transition font-semibold text-text-secondary hover:text-text-primary group mt-auto">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Perfil" class="w-7 h-7 rounded-full border border-ui-divider group-hover:scale-110 smooth-transition">
+                        Perfil
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- FEED PRINCIPAL -->
+            <main class="w-full max-w-[600px] flex-1 py-8 px-4 h-[800px] overflow-y-auto scroll-hide">
+                
+                <!-- TRAY DE STORIES (Inspiração Instagram) -->
+                <div class="bg-ui-surface rounded-2xl shadow-card p-4 mb-6 flex gap-4 overflow-x-auto scroll-hide border border-ui-divider/50">
+                    <!-- Item Story (Criar Novo) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer min-w-[70px]">
+                        <div class="relative">
+                            <div class="w-[64px] h-[64px] rounded-full overflow-hidden border-2 border-ui-divider p-0.5">
+                                <img src="https://i.pravatar.cc/150?img=33" alt="Meu perfil" class="w-full h-full rounded-full object-cover">
+                            </div>
+                            <div class="absolute bottom-0 right-0 w-5 h-5 bg-brand-blue rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold">
+                                +
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-full text-center text-text-secondary">Meu dia</span>
+                    </div>
+
+                    <!-- Item Story (Visualizado - estilo ClassDojo) -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer min-w-[70px]">
+                        <div class="story-ring">
+                            <div class="story-inner w-[58px] h-[58px]">
+                                <img src="https://i.pravatar.cc/150?img=47" alt="Turma A" class="w-full h-full rounded-full object-cover">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-full text-center font-semibold text-text-primary">Prof. Ana</span>
+                    </div>
+
+                    <!-- Item Story 3 -->
+                    <div class="flex flex-col items-center gap-2 cursor-pointer min-w-[70px]">
+                        <div class="story-ring">
+                            <div class="story-inner w-[58px] h-[58px]">
+                                <img src="https://i.pravatar.cc/150?img=12" alt="Turma B" class="w-full h-full rounded-full object-cover">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-full text-center font-semibold text-text-primary">3º Ano</span>
+                    </div>
+                </div>
+
+                <!-- CARTÃO DE POSTAGEM (Feed) -->
+                <article class="bg-ui-surface rounded-2xl shadow-card mb-6 border border-ui-divider/50 overflow-hidden">
+                    <!-- Post Header -->
+                    <div class="flex items-center justify-between p-4 pb-3">
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div class="story-ring p-[2px]">
+                                <div class="story-inner w-[36px] h-[36px] border-2">
+                                    <img src="https://i.pravatar.cc/150?img=47" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-bold text-[15px] leading-tight hover:text-text-secondary">Prof. Ana Clara</h3>
+                                    <span class="bg-brand-purple/10 text-brand-purple text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider hidden sm:inline-block">Ciências</span>
+                                </div>
+                                <p class="text-xs text-text-secondary">Atividade • 2h</p>
+                            </div>
+                        </div>
+                        <button class="text-text-secondary hover:text-text-primary smooth-transition">
+                            <i class="ri-more-2-fill text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="px-4 pb-2">
+                        <p class="text-text-primary mb-3">Hoje exploramos o sistema solar! 🪐 As crianças construíram maquetes incríveis em grupo. Parabéns turma pelo engajamento!</p>
+                    </div>
+                    
+                    <!-- Post Media -->
+                    <div class="w-full bg-ui-wash aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1610486008182-1c251421fecd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aula de ciências" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Post Actions (Instagram + Reddit style) -->
+                    <div class="p-4 py-2">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex gap-4 items-center">
+                                <!-- Reddit Upvote/Downvote Box -->
+                                <div class="flex gap-1 items-center bg-ui-wash rounded-full border border-ui-divider px-1.5 py-0.5 mr-1 shadow-sm">
+                                    <button class="text-text-secondary hover:text-brand-orange smooth-transition p-1 group">
+                                        <i class="ri-arrow-up-line text-[1.1rem] font-bold group-hover:-translate-y-0.5 smooth-transition block"></i>
+                                    </button>
+                                    <span class="text-xs font-bold text-text-primary px-1">342</span>
+                                    <button class="text-text-secondary hover:text-brand-blue smooth-transition p-1 group">
+                                        <i class="ri-arrow-down-line text-[1.1rem] font-bold group-hover:translate-y-0.5 smooth-transition block"></i>
+                                    </button>
+                                </div>
+
+                                <button class="text-text-secondary hover:text-brand-blue smooth-transition group">
+                                    <i class="ri-chat-3-line text-2xl group-hover:scale-110 inline-block smooth-transition"></i>
+                                </button>
+                                <button class="text-text-secondary hover:text-brand-yellow smooth-transition group">
+                                    <i class="ri-share-forward-line text-2xl group-hover:scale-110 inline-block smooth-transition"></i>
+                                </button>
+                            </div>
+                            <button class="text-text-secondary hover:text-brand-purple smooth-transition group">
+                                <i class="ri-bookmark-line text-2xl group-hover:scale-110 inline-block smooth-transition"></i>
+                            </button>
+                        </div>
+                        <div class="font-bold text-sm mb-1 mt-1">Nesta postagem: <span class="text-brand-purple">João Silva</span> e <span class="text-brand-purple">outras 45 crianças</span></div>
+                        <div class="text-text-secondary text-sm cursor-pointer mb-2">Ver todos os 12 comentários</div>
+                        
+                        <!-- Sessão de Comentários Aninhados (Estilo Reddit) -->
+                        <div class="mt-3 mb-4 pl-0">
+                            <div class="flex gap-2">
+                                <img src="https://i.pravatar.cc/100?img=12" alt="Perfil pai" class="w-6 h-6 rounded-full flex-shrink-0">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-0.5">
+                                        <span class="font-bold text-[13px] text-text-primary">carlos.pai</span>
+                                        <span class="text-[10px] text-text-secondary">há 30 min</span>
+                                    </div>
+                                    <p class="text-[13px] text-text-primary mb-1">Que maquete incrível! Meu filho adorou participar.</p>
+                                    <div class="flex gap-3 items-center text-text-secondary">
+                                        <div class="flex items-center gap-1">
+                                            <button class="hover:text-brand-orange"><i class="ri-arrow-up-line text-[11px] font-bold"></i></button>
+                                            <span class="font-bold text-[10px]">12</span>
+                                            <button class="hover:text-brand-blue"><i class="ri-arrow-down-line text-[11px] font-bold"></i></button>
+                                        </div>
+                                        <button class="text-[11px] font-semibold hover:underline">Responder</button>
+                                    </div>
+
+                                    <!-- Resposta aninhada (Fio condutor do Reddit) -->
+                                    <div class="mt-2 pl-3 pb-1 border-l-2 border-ui-divider hover:border-text-placeholder smooth-transition">
+                                        <div class="flex gap-2">
+                                            <img src="https://i.pravatar.cc/150?img=47" alt="Prof" class="w-5 h-5 rounded-full flex-shrink-0">
+                                            <div>
+                                                <div class="flex items-center gap-2 mb-0.5">
+                                                    <span class="font-bold text-[13px] text-brand-blue">Prof. Ana Clara</span>
+                                                    <span class="bg-brand-blue text-white text-[8px] px-1 rounded-sm uppercase font-bold tracking-widest leading-tight">OP</span>
+                                                    <span class="text-[10px] text-text-secondary">agora mesmo</span>
+                                                </div>
+                                                <p class="text-[13px] text-text-primary">Obrigada, Carlos! O Matheus foi o líder!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Comment -->
+                        <div class="flex items-center gap-3 mt-1 pt-3 border-t border-ui-divider/50">
+                            <img src="https://i.pravatar.cc/100?img=33" alt="Perfil" class="w-7 h-7 rounded-full">
+                            <input type="text" placeholder="Adicionar um comentário..." class="flex-1 bg-transparent text-sm outline-none placeholder-text-placeholder text-text-primary">
+                        </div>
+                    </div>
+                </article>
+
+            </main>
+
+            <!-- SIDEBAR DIREITA (Widgets, Gamificação, etc) -->
+            <aside class="w-[320px] hidden xl:block p-6 border-l border-ui-divider z-10 overflow-y-auto scroll-hide">
+                <!-- Perfil do Usuário Reduzido -->
+                <div class="flex items-center justify-between mb-8 mt-2">
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Perfil" class="w-12 h-12 rounded-full border border-ui-divider shadow-sm">
+                        <div>
+                            <div class="font-bold text-text-primary">gabriel.designer</div>
+                            <div class="text-text-secondary text-sm">Gabriel Silva</div>
+                        </div>
+                    </div>
+                    <button class="text-brand-blue font-bold text-xs hover:text-brand-blue_hover">Sair</button>
+                </div>
+
+                <!-- Widget Gamificação (EduCoins) -->
+                <div class="bg-ui-surface rounded-2xl shadow-card p-5 mb-6 border border-ui-divider/50">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-text-primary">Gamificação</h4>
+                        <i class="ri-medal-2-fill text-brand-yellow text-xl"></i>
+                    </div>
+                    <div class="bg-gradient-to-r from-brand-purple to-brand-blue rounded-xl p-4 text-white shadow-float relative overflow-hidden">
+                        <i class="ri-coins-fill absolute -bottom-4 -right-4 text-6xl opacity-20"></i>
+                        <p class="text-sm font-semibold opacity-90">Seus EduCoins</p>
+                        <p class="text-3xl font-black tracking-tight mt-1">2.450 <span class="text-sm font-normal opacity-80">EC</span></p>
+                    </div>
+                    <button class="w-full mt-3 text-sm text-center font-bold text-brand-purple hover:underline">Ver Recompensas</button>
+                </div>
+
+                <!-- Widget Catraca Virtual -->
+                <div class="bg-ui-surface rounded-2xl shadow-card p-5 border border-ui-divider/50">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-bold text-text-primary">Catraca Virtual</h4>
+                        <span class="text-xs bg-green-100 text-green-700 font-bold px-2 py-1 rounded-full">Ao Vivo</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-ui-wash p-3 rounded-xl border border-ui-divider/50">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow-sm flex-shrink-0">
+                            <i class="ri-check-line text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm leading-tight text-text-primary">Matheus Silva <span class="text-text-secondary font-normal">(Filho)</span></p>
+                            <p class="text-xs text-text-secondary mt-0.5">Entrada registada às 07:15</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer links like Instagram -->
+                <div class="mt-8 text-xs text-text-placeholder leading-relaxed pe-4">
+                    <a href="#" class="hover:underline">Sobre</a> • 
+                    <a href="#" class="hover:underline">Ajuda</a> • 
+                    <a href="#" class="hover:underline">Privacidade</a> • 
+                    <a href="#" class="hover:underline">Termos</a>
+                    <p class="mt-4">© 2026 REDE ESCOLA</p>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+</body>
+</html>
