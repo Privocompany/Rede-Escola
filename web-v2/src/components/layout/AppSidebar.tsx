@@ -29,7 +29,7 @@ export default function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[72px] xl:w-[260px] bg-ui-surface border-r border-ui-divider flex flex-col z-50 shadow-nav transition-all duration-300">
+    <aside className="fixed left-0 top-0 h-screen w-[72px] xl:w-[260px] bg-ui-surface border-r border-ui-divider hidden md:flex flex-col z-50 shadow-nav transition-all duration-300">
       {/* Logo */}
       <div className="p-4 xl:p-6 flex items-center gap-3 mb-2">
         <div className="w-10 h-10 bg-brand-purple rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-float flex-shrink-0">

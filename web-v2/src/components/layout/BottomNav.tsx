@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Search, CalendarDays, Coins, DoorOpen, Bell } from "lucide-react";
+import { Home, Search, CalendarDays, Coins, DoorOpen, Bell, GraduationCap } from "lucide-react";
 
 const navItems = [
   { href: "/", icon: Home, label: "Início" },
-  { href: "/buscar", icon: Search, label: "Buscar" },
   { href: "/agenda", icon: CalendarDays, label: "Agenda" },
+  { href: "/cursos", icon: GraduationCap, label: "Cursos" },
   { href: "/educoins", icon: Coins, label: "EduCoins" },
   { href: "/catraca", icon: DoorOpen, label: "Catraca" },
   { href: "/notificacoes", icon: Bell, label: "Avisos" },
