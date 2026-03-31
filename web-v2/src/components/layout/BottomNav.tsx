@@ -18,7 +18,7 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-ui-surface border-t border-ui-divider z-50 flex justify-around items-center h-16 px-2 md:hidden shadow-[0_-4px_14px_rgba(0,0,0,0.06)]">
+    <nav className="fixed bottom-0 left-0 right-0 h-16 bg-ui-surface border-t border-ui-divider z-50 flex md:hidden justify-around items-center px-2 shadow-nav">
       {navItems.map(({ href, icon: Icon, label }) => {
         const isActive = pathname === href;
         return (
@@ -33,7 +33,6 @@ export default function BottomNav() {
             <Icon
               size={22}
               className={cn(
-                "smooth",
                 isActive ? "stroke-[2.5px]" : "stroke-[1.8px]"
               )}
             />

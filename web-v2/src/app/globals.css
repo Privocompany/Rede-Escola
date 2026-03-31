@@ -4,12 +4,50 @@
 
 @theme {
   --color-brand-purple: #6835d6;
+  --color-brand-purple-hover: #5a2eba;
   --color-brand-blue: #00b2f7;
+  --color-brand-blue-hover: #009dde;
   --color-brand-yellow: #ffca28;
   --color-brand-orange: #ff4500;
+  
   --color-ui-wash: #f0f2f5;
   --color-ui-surface: #ffffff;
   --color-ui-divider: #e4e6eb;
+  
+  --color-text-primary: #050505;
+  --color-text-secondary: #65676b;
+  --color-text-placeholder: #8a8d91;
+
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-float: 0 8px 30px rgba(104, 53, 214, 0.15);
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  --shadow-input: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+  @keyframes ripple {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(0.9); }
+  }
+  --animate-ripple: ripple 3s ease-in-out infinite;
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg); }
+    to { transform: rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg); }
+  }
+  --animate-orbit: orbit var(--duration) linear infinite;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
 @layer base {

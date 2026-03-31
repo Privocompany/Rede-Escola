@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import AppSidebar from "@/components/layout/AppSidebar";
-import BottomNav from "@/components/layout/BottomNav";
+import SidebarWrapper from "@/components/layout/SidebarWrapper";
 
 export const metadata: Metadata = {
   title: "Rede Escola",
@@ -16,18 +15,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="bg-ui-wash min-h-screen text-text-primary">
-        <div className="min-h-screen">
-          {/* Sidebar Desktop */}
-          <AppSidebar />
-          
-          {/* Main Container com padding para a Sidebar */}
-          <main className="md:pl-[72px] xl:pl-[260px] pb-20 md:pb-0 min-h-screen">
-            {children}
-          </main>
-
-          {/* Nav Mobile */}
-          <BottomNav />
-        </div>
+        <SidebarWrapper>
+          {children}
+        </SidebarWrapper>
       </body>
     </html>
   );
