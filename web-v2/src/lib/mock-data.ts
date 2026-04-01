@@ -133,7 +133,7 @@ export const mockPosts: MockPost[] = [
     content:
       "Hoje exploramos o sistema solar! 🪐 As crianças construíram maquetes incríveis em grupo. Foi incrível ver a dedicação de cada um. Parabéns turma pelo engajamento e criatividade!",
     image:
-      "https://images.unsplash.com/photo-1610486008182-1c251421fecd?w=800&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop",
     timestamp: "há 2 horas",
     flair: { label: "Ciências", color: "purple" },
     votes: 342,
@@ -144,7 +144,7 @@ export const mockPosts: MockPost[] = [
           id: "u5",
           name: "Carlos (Pai do Matheus)",
           username: "carlos.pai",
-          avatar: "https://i.pravatar.cc/150?img=12",
+          avatar: "https://i.pravatar.cc/150?u=carlos",
           role: "PAI",
         },
         content: "Que maquete incrível! Meu filho adorou participar. 🚀",
@@ -157,7 +157,7 @@ export const mockPosts: MockPost[] = [
               id: "u1",
               name: "Prof. Ana Clara",
               username: "ana.professora",
-              avatar: "https://i.pravatar.cc/150?img=47",
+              avatar: "https://i.pravatar.cc/150?u=ana",
               role: "PROFESSOR",
             },
             content: "Obrigada Carlos! 😊 O Matheus foi o líder do grupo!",
@@ -175,7 +175,7 @@ export const mockPosts: MockPost[] = [
       id: "u3",
       name: "Diretora Lucia",
       username: "lucia.dir",
-      avatar: "https://i.pravatar.cc/150?img=56",
+      avatar: "https://i.pravatar.cc/150?u=lucia",
       role: "DIRETOR",
     },
     content:
@@ -190,7 +190,7 @@ export const mockPosts: MockPost[] = [
           id: "u6",
           name: "Maria (Mãe da Sofia)",
           username: "maria.mae",
-          avatar: "https://i.pravatar.cc/150?img=23",
+          avatar: "https://i.pravatar.cc/150?u=maria",
           role: "PAI",
         },
         content: "Obrigada pelo aviso! Já programei um passeio. 🌳",
@@ -205,7 +205,7 @@ export const mockPosts: MockPost[] = [
       id: "u4",
       name: "Prof. Carlos (Matemática)",
       username: "carlos.mat",
-      avatar: "https://i.pravatar.cc/150?img=68",
+      avatar: "https://i.pravatar.cc/150?u=carlos_mat",
       role: "PROFESSOR",
     },
     content:

@@ -585,7 +585,7 @@ const AuthTabs = memo(function AuthTabs({
   handleSubmit,
 }: AuthTabsProps) {
   return (
-    <div className='flex justify-center w-full min-h-screen items-center'>
+    <div className='flex justify-center w-full'>
       <AnimatedForm
         {...formFields}
         fieldPerRow={1}

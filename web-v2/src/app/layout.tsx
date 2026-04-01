@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SidebarWrapper from "@/components/layout/SidebarWrapper";
 import AuthGuard from "@/components/auth/AuthGuard";
+import { AuthProvider } from "@/lib/auth-context";
 
 export const metadata: Metadata = {
   title: "Rede Escola",
@@ -16,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="bg-ui-wash min-h-screen text-text-primary">
-        <AuthGuard>
-          <SidebarWrapper>
-            {children}
-          </SidebarWrapper>
-        </AuthGuard>
+        <AuthProvider>
+          <AuthGuard>
+            <SidebarWrapper>
+              {children}
+            </SidebarWrapper>
+          </AuthGuard>
+        </AuthProvider>
       </body>
     </html>
   );

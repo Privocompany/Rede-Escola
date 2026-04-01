@@ -3,14 +3,16 @@
 import { usePathname } from 'next/navigation';
 import AppSidebar from '@/components/layout/AppSidebar';
 import BottomNav from '@/components/layout/BottomNav';
+import { MessageDock } from '@/components/ui/message-dock';
 
 export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   
-  // Lista de páginas que não devem ter barra lateral/rodapé
-  const noLayoutPages = ['/login', '/cadastro', '/esqueci-senha', '/landing'];
+  // Páginas sem layout (onboarding, auth, admin próprio)
+  const noLayoutPages = ['/login', '/cadastro', '/esqueci-senha', '/landing', '/admin', '/professor', '/aluno', '/responsavel'];
   const showLayout = !noLayoutPages.includes(pathname);
 
+  // Sem layout: apenas renderiza o conteúdo puro
   if (!showLayout) return <main className="min-h-screen">{children}</main>;
 
   return (
@@ -22,6 +24,9 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
       </main>
 
       <BottomNav />
+
+      {/* Chat flutuante: só aparece em páginas autenticadas */}
+      <MessageDock />
     </div>
   );
 }
