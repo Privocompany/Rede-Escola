@@ -16,6 +16,8 @@ export default function RegisterPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Cadastro submetido");
+    // Simular o "token" de login no navegador ao se cadastrar
+    localStorage.setItem('redeescola_auth', 'true');
     // Simular cadastro bem sucedido
     router.push('/');
   };

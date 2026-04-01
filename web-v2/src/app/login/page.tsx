@@ -16,6 +16,8 @@ export default function LoginPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Login submitted");
+    // Simular o "token" de login no navegador
+    localStorage.setItem('redeescola_auth', 'true');
     // Simular login bem sucedido
     router.push('/');
   };
